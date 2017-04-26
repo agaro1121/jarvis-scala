@@ -1,0 +1,25 @@
+{
+  "name": "jarvis-scala",
+  "version": "1.0.0",
+  "dependencies": {
+    "coffee-script": "^1.12.5",
+    "hubot": "^2.19.0",
+    "hubot-slack": "4.3.4",
+    "hubot-scripts": "^2.17.2",
+    "scalajs-standalone-bin": "^0.4.3",
+    "node-java-maven": "^0.0.12"
+  },
+  "scripts": {
+    "clean": "rm -rf .tmp dist",
+    "prepare": "mkdir -p .tmp dist",
+    "scalajsc": "scalajsc -feature $(find src -name '*.scala') -d .tmp",
+    "scalajsld": "scalajsld -o dist/example.js .tmp",
+    "build": "npm run prepare && npm run scalajsc  && npm run scalajsld",
+    "postinstall": "node-java-maven",
+    "heroku-postbuild": "npm run build"
+  },
+  "java": {
+    "dependencies": [
+    ]
+  }
+}
